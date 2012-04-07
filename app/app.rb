@@ -20,7 +20,7 @@ class App < Sinatra::Base
     @settings_form = Settings.new(params)
 
     if @settings_form.validate?(params)
-      @settings_form.save_to_config!
+      @settings_form.save
       $settings = @settings_form
       DynDNSimple.refresh!
       # flash that settings have been updated
