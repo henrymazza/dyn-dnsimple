@@ -2,8 +2,5 @@ require 'rubygems'
 require 'daemons'
 
 pwd = Dir.pwd
-Daemons.run_proc('dyn-dnsimple.rb', {:dir_mode => :normal, :dir => "/tmp/dyn-dnsimple.pid"}) do
-  Dir.chdir(pwd)
-  exec "ruby dyn-dnsimple.rb"
-end
+Daemons.run('/home/fabio/dyn-dnsimple/dyn-dnsimple.rb', {:dir_mode => :normal, :dir => "/home/fabio/dyn-dnsimple/tmp/pids"}) 
   
