@@ -26,4 +26,9 @@ EventMachine.run do
   EventMachine.add_periodic_timer($settings.update_frequency) {
     DynDNSimple.refresh!
   }
+  
+  EM.error_handler{ |e|
+    $log.error "Error raised during event loop: #{e.message}"
+  }
+  
 end
