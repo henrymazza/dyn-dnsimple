@@ -24,6 +24,10 @@ EventMachine.run do
 
   # check for dns changes every $settings.update_frequency times
   EventMachine.add_periodic_timer($settings.update_frequency) {
-    DynDNSimple.refresh!
+    begin
+      DynDNSimple.refresh!
+    rescue
+      $log.fatal $!
+    end
   }
 end
