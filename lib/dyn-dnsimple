@@ -1,5 +1,0 @@
-#!/bin/bash
-
-sudo -u www-data ruby /root/dyn-dnsimple/control.rb $1 RETVAL=$?
-
-exit $RETVAL
