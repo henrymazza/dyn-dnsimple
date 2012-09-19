@@ -1,16 +1,18 @@
+require 'socket'
+
 class DynDNSimple
   def self.refresh!
     return unless refreshable?
 
     DNSimple::Client.username = $settings.username
     DNSimple::Client.password = $settings.password
+     
+    s = TCPSocket.new 'sampa.officina.me', 3038
+    $settings.current_ip = s.gets
+    s.close
 
-    EM::HttpRequest.new('http://icanhazip.com').get.callback do |http|
-      $settings.current_ip = http.response.strip!
-      $settings.save
-      $log.info "DynDNSimple: Current External IP is #{$settings.current_ip}"
-      update_record
-    end
+    $log.info "DynDNSimple: Current External IP is #{$settings.current_ip}"
+    update_record
   end
 
   def self.refreshable?
