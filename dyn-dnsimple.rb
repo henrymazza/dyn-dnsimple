@@ -30,9 +30,9 @@ EventMachine.run do
       $log.fatal $!
     end
   }
-  
+
   EM.error_handler{ |e|
     $log.error "Error raised during event loop: #{e.message}"
   }
-  
+
 end

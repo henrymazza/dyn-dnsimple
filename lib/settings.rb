@@ -1,5 +1,5 @@
 class Settings
-  attr_accessor :username, :password, :domain, :hostname, :update_frequency, 
+  attr_accessor :username, :password, :domain, :hostname, :update_frequency,
                 :http_port, :current_ip, :errors
 
   def initialize(options = {})
@@ -76,3 +76,4 @@ class Settings
 end
 
 $settings = Settings.new
+puts $settings.hostname

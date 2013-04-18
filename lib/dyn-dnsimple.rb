@@ -30,6 +30,8 @@ class DynDNSimple
     return unless record
 
     record.content = $settings.current_ip
+    puts record.name
+    puts record.fqdn
     record.save
     $log.info "DynDNSimple: New External IP is #{record.content}"
   end
