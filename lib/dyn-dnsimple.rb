@@ -6,8 +6,8 @@ class DynDNSimple
 
     DNSimple::Client.username = $settings.username
     DNSimple::Client.password = $settings.password
-     
-    s = TCPSocket.new 'sampa.officina.me', 3038
+
+    s = TCPSocket.new 'sampa2.officina.me', 3038
     $settings.current_ip = s.gets
     s.close
 
@@ -16,9 +16,9 @@ class DynDNSimple
   end
 
   def self.refreshable?
-    !$settings.username.nil? && 
-    !$settings.password.nil? && 
-    !$settings.domain.nil? && 
+    !$settings.username.nil? &&
+    !$settings.password.nil? &&
+    !$settings.domain.nil? &&
     !$settings.hostname.nil?
   end
 
@@ -35,8 +35,8 @@ class DynDNSimple
   end
 
   def self.need_to_update?(record)
-    record.name == $settings.hostname && 
-    record.record_type == "A" && 
+    record.name == $settings.hostname &&
+    record.record_type == "A" &&
     record.content != $settings.current_ip
   end
 end
